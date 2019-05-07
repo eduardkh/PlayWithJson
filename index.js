@@ -15,8 +15,8 @@ xhttp.onreadystatechange = function() {
           </ul>
           `;
         });
-// logging for testing
-// console.log(phoneNumbersMap);
+        // logging for testing
+        // console.log(phoneNumbersMap);
         output.innerHTML = `
 <h4 class="p-3 mb-2 bg-warning text-dark">Name: ${jsonContent.firstName} ${
             jsonContent.lastName
@@ -38,3 +38,12 @@ ${phoneNumbersMap.join("")}
 // connect to external JSON file
 xhttp.open("GET", "json.json", true);
 xhttp.send();
+
+axios
+    .get("json.json")
+    .then(function(response) {
+        console.log(response);
+    })
+    .catch(function(error) {
+        console.log(error);
+    });

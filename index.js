@@ -1,4 +1,5 @@
 let output = document.getElementById("output");
+let output2 = document.getElementById("output2");
 
 let xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
@@ -18,6 +19,7 @@ xhttp.onreadystatechange = function() {
         // logging for testing
         // console.log(phoneNumbersMap);
         output.innerHTML = `
+        <p class="p-3 mb-2 bg-danger text-white">local JSON file</p>
 <h4 class="p-3 mb-2 bg-warning text-dark">Name: ${jsonContent.firstName} ${
             jsonContent.lastName
         }</h4>
@@ -39,11 +41,27 @@ ${phoneNumbersMap.join("")}
 xhttp.open("GET", "json.json", true);
 xhttp.send();
 
-axios
-    .get("json.json")
+// axios
+//     .get("json.json")
+//     .then(function(response) {
+//         console.log(response.data);
+//     })
+//     .catch(function(error) {
+//         console.log(error);
+//     });
+
+jsonplaceholder = axios
+    .get("https://jsonplaceholder.typicode.com/users/1")
     .then(function(response) {
-        console.log(response);
+        output2.innerHTML = `
+        <p class="p-3 mb-2 bg-danger text-white">jsonplaceholder</p>
+        <h4 class="p-3 mb-2 bg-warning text-dark">Name: ${response.data.name}</h4>
+        <h4 class="p-3 mb-2 bg-warning text-dark">email: ${response.data.email}</h4>
+        <h4 class="p-3 mb-2 bg-warning text-dark">Company name: ${response.data.company.name}</h4>
+`
+        console.log(response.data);
     })
     .catch(function(error) {
         console.log(error);
     });
+
